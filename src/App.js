@@ -5,7 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import Profile from './components/Profile';
 import Friends from './components/Friends';
-import {BrowserRouter as Router} from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         name: "Casey Harding",
         username: "CRHarding",
         image: "https://pyxis.nymag.com/v1/imgs/5e4/dfd/c59573793cc957a78d232f82d3832af173-17-thor.rsquare.w700.jpg",
-        friendList: ["Leo"]
+        friendList: []
       },
       apiDataLoaded: false,
       potentialFriends: []
@@ -40,6 +40,21 @@ class App extends Component {
       apiDataLoaded: true
     })
   }
+  addFriend = (newFriend) => {
+    const currentFriends = this.state.user;
+    currentFriends.friendList.push(newFriend);
+
+    const potentialFriends = this.state.potentialFriends;
+    const newPotentialFriends=potentialFriends.filter(friend => {
+      return newFriend.login.uuid !== friend.login.uuid
+    })
+    console.log(newPotentialFriends);
+
+    this.setState({
+      user: currentFriends,
+      potentialFriends: newPotentialFriends
+    })
+  }
   render() {
     return (
       <div className="App">
@@ -49,11 +64,12 @@ class App extends Component {
 
           </nav>
         <h1>CaseyBook</h1>
-        <Route path="/" render={() => (
+        <Route exact path="/" render={() => (
         <Profile user={this.state.user} />
         )} />
         <Route path="/users" render={() => (
-        <Friends potentialFriends={this.state.potentialFriends} />
+        <Friends potentialFriends={this.state.potentialFriends}
+        addFriend={this.addFriend} />
         )} />
       </div>
     );
