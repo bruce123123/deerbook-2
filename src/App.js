@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Route, Link} from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import Profile from './components/Profile';
 import Friends from './components/Friends';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -39,9 +43,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <nav>
+          <Link to="/">Profile</Link>
+          <Link to="/users">Users</Link>
+
+          </nav>
         <h1>CaseyBook</h1>
+        <Route path="/" render={() => (
         <Profile user={this.state.user} />
+        )} />
+        <Route path="/users" render={() => (
         <Friends potentialFriends={this.state.potentialFriends} />
+        )} />
       </div>
     );
   }
