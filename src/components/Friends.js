@@ -1,8 +1,9 @@
-FriendsPage.js
+
 import React from 'react';
-const FriendsPage = (props) => {
+
+const Friends = (props) => {
   return (
     <p>Lorem</p>
   )
 }
-export default FriendsPage;
+export default Friends;

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Profile from './components/Profile';
-import FriendsPage from './components/FriendsPage';
+import Friends from './components/Friends';
+
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +24,7 @@ class App extends Component {
       <div className="App">
         <h1>CaseyBook</h1>
         <Profile user={this.state.user} />
-        <FriendsPage />
+        <Friends />
       </div>
     );
   }
