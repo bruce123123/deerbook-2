@@ -1,9 +1,18 @@
-
 import React from 'react';
 
 const Friends = (props) => {
+  console.log(props);
   return (
-    <p>Lorem</p>
+    <div>
+      {props.potentialFriends.map(friend => (
+        <div key={friend.cell}>
+          <img src={friend.picture.thumbnail} />
+          <h3>{friend.name.first} {friend.name.last}</h3>
+          <p>{friend.login.username}</p>
+          <button onClick={() => props.addFriend(friend)}>Add Friend</button>
+        </div>
+      ))}
+    </div>
   )
 }
 export default Friends;
